@@ -1,5 +1,6 @@
 # Reference: http://qt-project.org/doc/qt-5.0/qtdoc/cmake-manual.html
-
+# export CMAKE_PREFIX_PATH=/Users/aadebuger/Qt5.7.1/5.7/clang_64/lib/cmake
+project( Qt5Project )
 cmake_minimum_required(VERSION 3.0)
 
 # Add folder where are supportive functions
@@ -32,10 +33,13 @@ set(RESOURCE_FILES example.qrc)
 
 find_package(Qt5Widgets REQUIRED)
 
+ADD_SUBDIRECTORY(ext/curlcpp)
+INCLUDE_DIRECTORIES(${CURLCPP_SOURCE_DIR}/include)
+
 # source_group("UI Files" FILES ${UI_FILES})
 
 add_executable(${PROJECT_NAME} ${OS_BUNDLE} # Expands to WIN32 or MACOS_BUNDLE depending on OS
     ${SOURCE_FILES} ${META_FILES_TO_INCLUDE} ${RESOURCE_FILES}
 )
-
+target_link_libraries(${PROJECT_NAME} curlcpp)
 qt5_use_modules(${PROJECT_NAME} Widgets)
