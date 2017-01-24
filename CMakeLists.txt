@@ -33,6 +33,10 @@ set(RESOURCE_FILES example.qrc)
 
 find_package(Qt5Widgets REQUIRED)
 
+include("cmake/Modules/FindGlog.cmake")  
+#find_package(lib_glog REQUIRED)  
+include_directories(${GLOG_INCLUDE_DIRS})
+
 ADD_SUBDIRECTORY(ext/curlcpp)
 INCLUDE_DIRECTORIES(${CURLCPP_SOURCE_DIR}/include)
 
