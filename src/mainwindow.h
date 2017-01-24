@@ -15,9 +15,14 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
-
+         public slots:
+    void onProgressChanged(QString info);
 private:
     QScopedPointer<Ui::MainWindow> ui;
+    void timerEvent(QTimerEvent *event);
+    void update();
+     int timerId;
+
 };
 
 #endif
